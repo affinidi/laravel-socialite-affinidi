@@ -1,5 +1,5 @@
 {
-  "name": "kamarthiparamesh/laravel-socialite-affinidi",
+  "name": "affinidi/laravel-socialite-affinidi",
   "description": "Affinidi (affinidi.com) OAuth2 Provider for Laravel Socialite.",
   "keywords": [
     "affinidi",
@@ -10,8 +10,8 @@
   ],
   "homepage": "https://affinidi.com",
   "support": {
-      "issues": "https://github.com/kamarthiparamesh/laravel-socialite-affinidi/issues",
-      "source": "https://github.com/kamarthiparamesh/laravel-socialite-affinidi"
+      "issues": "https://github.com/affinidi/laravel-socialite-affinidi/issues",
+      "source": "https://github.com/affinidi/laravel-socialite-affinidi"
   },
   "require": {
     "php": "^8.0",
