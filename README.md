@@ -55,3 +55,186 @@ Route::get('/login/affinidi/callback', function () {
     // $user->token
 });
 ```
+
+## Setup & Run application from playground folder
+
+Open the directory `playground/example` in VS code or your favorite editor
+
+ 1. Install the dependencies by executing the below command in terminal
+    ```
+    composer install
+    ```
+ 2. Create the `.env` file in the sample application by running the following command
+    ```
+    cp .env.example .env
+    ```
+ 3. Create [Affinidi Login Configuration](https://docs.affinidi.com/docs/affinidi-login/login-configuration/#create-login-configuration) by giving name as `Laravel App` and `Redirect URIs` as `http://localhost:8000/login/affinidi/callback`. Sample response is given below
+    ```
+    {
+        ...
+        "auth": {
+            "clientId": "<AUTH.CLIENT_ID>",
+            "clientSecret": "<AUTH.CLIENT_SECRET>",
+            "issuer": "https://<PROJECT_ID>.apse1.login.affinidi.io"
+        }
+        ...
+    }
+    ```
+    **Important**: Safeguard the Client ID and Client Secret and Issuer; you'll need them for setting up your environment variables. Remember, the Client Secret will be provided only once.
+
+    **Note**: By default Login Configuration will requests only `Email VC`, if you want to request email and profile VC, you can refer PEX query under `docs\loginConfig.json` and execute the below affinidi CLI command to update PEX
+    ```
+    affinidi login update-config --id <CONFIGURATION_ID> -f docs\loginConfig.json
+    ```
+ 
+ 4. Update below environment variables in `.env` based on the auth credentials received from the Login Configuration created earlier:
+    ```
+    AFFINIDI_CLIENT_ID="<AUTH.CLIENT_ID>"
+    AFFINIDI_CLIENT_SECRET="<AUTH.CLIENT_SECRET>"
+    AFFINIDI_ISSUER="<AUTH.CLIENT_ISSUER>"
+    ```
+    Sample values looks like below
+    ```
+    AFFINIDI_CLIENT_ID="xxxxx-xxxxx-xxxxx-xxxxx-xxxxx"
+    AFFINIDI_CLIENT_SECRET="xxxxxxxxxxxxxxx"
+    AFFINIDI_ISSUER="https://yyyy-yyy-yyy-yyyy.apse1.login.affinidi.io"
+    ```
+5. Run the application
+    ```
+    php artisan serve
+    ```
+6. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
+    **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
+7. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
+
+<br/>
+<br/>
+<br/>
+
+## Integration Affinidi Login - Fresh Laravel Project
+
+If you want to start fresh without any base reference app, then you can follow the below steps
+
+### Create Laravel Project
+Before creating your first Laravel project, you should ensure that your local machine has `PHP` and `Composer` installed.
+
+1. You may create a new Laravel project via the Composer `create-project` command
+```
+composer create-project laravel/laravel example-app
+```
+
+**Note**: If you enounter any issue on creating project like `fileInfo`, then you may have enable the fileInfo extension in your `php.ini` file like below
+```
+extension=fileinfo
+```
+2. After the project has been created, start Laravel's local development server using the Laravel's Artisan CLI `serve` command
+```
+cd example-app
+ 
+php artisan serve
+```
+3. Once you have started the Artisan development server, your application will be accessible in your web browser at [http://localhost:8000](http://localhost:8000)
+
+**Note**: If you enounter an error on generating Key, then execute the below command which updates `APP_KEY` in your .env file and then run the app
+```
+php artisan key:generate
+```
+
+### Install Affinidi Socialite Provider
+To get started with Socialite, use the Composer package manager to add the package to your project's dependencies
+
+1. Install Affinidi Socialite Library
+```
+composer require affinidi/laravel-socialite-affinidi
+```
+2. Open `AppServiceProvider.php` file under `app\Providers`, and bootrap the affinidi driver to socialite class inside function `boot()`, the code should look like below 
+```
+public function boot(): void
+{
+    $socialite = $this->app->make(Factory::class);
+
+    \Affinidi\SocialiteProvider\AffinidiSocialite::extend($socialite);
+}
+```
+3. Add credentials for the OAuth2 affinidi provider, should be placed in your application's `config/services.php` configuration file,
+```
+'affinidi' => [
+    'base_uri' => env('AFFINIDI_ISSUER'),
+    'client_id' => env('AFFINIDI_CLIENT_ID'),
+    'client_secret' => env('AFFINIDI_CLIENT_SECRET'),
+    'redirect' => '/login/affinidi/callback',
+],
+```
+
+### Use Affinidi Provider Inside Controller
+
+1. Create `LoginRegisterController.php` file under `app\Http\Controllers`, which has actions to perform normal login, logout, affinidi login and its callback, reference can be found [here](playground\example\app\Http\Controllers\LoginRegisterController.php)
+2. Open `routes\web.php` file and Add Web Routes which invokes the above login controller actions, reference can be found [here](playground\example\routes\web.php)
+3. Create file `login.blade.php` under `resources\views` for adding Affinidi Login button, reference can be found [here](playground\example\resources\views\login.blade.php)
+4. Create dashboard `dashboard.blade.php` under `resources\views` for displaying the logged in user info, reference can be found [here](playground\example\resources\views\dashboard.blade.php)
+
+
+### Run the application
+
+1. Run the application
+    ```
+    php artisan serve
+    ```
+2. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
+    **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
+3. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
+
+<br/>
+<br/>
+<br/>
+
+## Integration Affinidi Login to existing Laravel Project
+
+If you want to integrate Affinidi Login to any existing PHP Laravel Application using socialite, then you can follow the below steps
+
+### Install Affinidi Socialite Provider
+To get started with Socialite, use the Composer package manager to add the package to your project's dependencies
+
+1. Install Affinidi Socialite Library
+```
+composer require affinidi/laravel-socialite-affinidi
+```
+2. Open `AppServiceProvider.php` file under `app\Providers`, and bootrap the affinidi driver to socialite class inside function `boot()`, the code should look like below 
+```
+public function boot(): void
+{
+    $socialite = $this->app->make(Factory::class);
+
+    \Affinidi\SocialiteProvider\AffinidiSocialite::extend($socialite);
+}
+```
+3. Add credentials for the OAuth2 affinidi provider, should be placed in your application's `config/services.php` configuration file,
+```
+'affinidi' => [
+    'base_uri' => env('AFFINIDI_ISSUER'),
+    'client_id' => env('AFFINIDI_CLIENT_ID'),
+    'client_secret' => env('AFFINIDI_CLIENT_SECRET'),
+    'redirect' => '/login/affinidi/callback',
+],
+```
+4. Create the Login Configuration using [Affinidi Dev Portal](https://portal.affinidi.com/) as illustrated [here](https://docs.affinidi.com/docs/affinidi-login/login-configuration/#using-affinidi-portal). You can given name as "Socialite App" and Redirect URIs as per your application specific e.g. "https://<domain-name>/login/affinidi/callback"
+
+5. Update below environment variables in .env based on the auth credentials obtained from the previous step
+
+AFFINIDI_CLIENT_ID="<AUTH.CLIENT_ID>"
+AFFINIDI_CLIENT_SECRET="<AUTH.CLIENT_SECRET>"
+AFFINIDI_ISSUER="<AUTH.CLIENT_ISSUER>"
+
+6. Add the Affinidi Login button in your login page, reference can be found [here]((playground\example\resources\views\login.blade.php)) 
+
+7. Use socialite driver as 'affinidi' in route handler / controller, reference controller can be found [here](playground\example\app\Http\Controllers\LoginRegisterController.php)
+
+### Run the application
+
+1. Run the application
+    ```
+    php artisan serve
+    ```
+2. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
+    **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
+3. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
