@@ -4,6 +4,14 @@ This package extends Socialite to enable passwordless authentication with the Af
 
 Learn more about Laravel Socialite [here](https://laravel.com/docs/10.x/socialite)
 
+**Quick Links**
+1. [Installation & Usage](#setup--run-application-from-playground-folder)
+2. [Create Affinidi Login Configuration](#create-affinidi-login-configuration)
+3. Affinidi Login Integration with [Sample Laravel project](#setup--run-application-from-playground-folder)
+4. Affinidi Login Integration in [Fresh Laravel Project](#setup--run-application-from-playground-folder)
+5. Affinidi Login Integration in [Existing Laravel Project](#setup--run-application-from-playground-folder)
+
+
 ## Installation & Basic Usage
 
 To get started with Affinidi Socialite, follow these steps:
@@ -56,6 +64,17 @@ Route::get('/login/affinidi/callback', function () {
 });
 ```
 
+## Create Affinidi Login Configuration
+
+Create the Login Configuration using [Affinidi Dev Portal](https://portal.affinidi.com/) as illustrated [here](https://docs.affinidi.com/docs/affinidi-login/login-configuration/#using-affinidi-portal). You can given name as "Socialite App" and Redirect URIs as per your application specific e.g. "https://<domain-name>/login/affinidi/callback"
+
+**Important**: Safeguard the Client ID and Client Secret and Issuer; you'll need them for setting up your environment variables. Remember, the Client Secret will be provided only once.
+
+**Note**: By default Login Configuration will requests only `Email VC`, if you want to request email and profile VC, you can refer PEX query under (docs\loginConfig.json)[playground\example\docs\loginConfig.json] and execute the below affinidi CLI command to update PEX
+```
+affinidi login update-config --id <CONFIGURATION_ID> -f docs\loginConfig.json
+```
+
 ## Setup & Run application from playground folder
 
 Open the directory `playground/example` in VS code or your favorite editor
@@ -68,24 +87,7 @@ Open the directory `playground/example` in VS code or your favorite editor
     ```
     cp .env.example .env
     ```
- 3. Create [Affinidi Login Configuration](https://docs.affinidi.com/docs/affinidi-login/login-configuration/#create-login-configuration) by giving name as `Laravel App` and `Redirect URIs` as `http://localhost:8000/login/affinidi/callback`. Sample response is given below
-    ```
-    {
-        ...
-        "auth": {
-            "clientId": "<AUTH.CLIENT_ID>",
-            "clientSecret": "<AUTH.CLIENT_SECRET>",
-            "issuer": "https://<PROJECT_ID>.apse1.login.affinidi.io"
-        }
-        ...
-    }
-    ```
-    **Important**: Safeguard the Client ID and Client Secret and Issuer; you'll need them for setting up your environment variables. Remember, the Client Secret will be provided only once.
-
-    **Note**: By default Login Configuration will requests only `Email VC`, if you want to request email and profile VC, you can refer PEX query under `docs\loginConfig.json` and execute the below affinidi CLI command to update PEX
-    ```
-    affinidi login update-config --id <CONFIGURATION_ID> -f docs\loginConfig.json
-    ```
+ 3. Create Affinidi Login Configuration as mentioned [here](#create-affinidi-login-configuration)
  
  4. Update below environment variables in `.env` based on the auth credentials received from the Login Configuration created earlier:
     ```
@@ -217,7 +219,7 @@ public function boot(): void
     'redirect' => '/login/affinidi/callback',
 ],
 ```
-4. Create the Login Configuration using [Affinidi Dev Portal](https://portal.affinidi.com/) as illustrated [here](https://docs.affinidi.com/docs/affinidi-login/login-configuration/#using-affinidi-portal). You can given name as "Socialite App" and Redirect URIs as per your application specific e.g. "https://<domain-name>/login/affinidi/callback"
+4. Create the Login Configuration as per step [here](#create-affinidi-login-configuration)
 
 5. Update below environment variables in .env based on the auth credentials obtained from the previous step
 
