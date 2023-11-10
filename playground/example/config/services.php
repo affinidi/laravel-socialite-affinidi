@@ -32,9 +32,9 @@ return [
     ],
 
     'affinidi' => [
-        'base_uri' => env('AFFINIDI_ISSUER'),
-        'client_id' => env('AFFINIDI_CLIENT_ID'),
-        'client_secret' => env('AFFINIDI_CLIENT_SECRET'),
+        'base_uri' => env('PROVIDER_ISSUER'),
+        'client_id' => env('PROVIDER_CLIENT_ID'),
+        'client_secret' => env('PROVIDER_CLIENT_SECRET'),
         'redirect' => '/login/affinidi/callback',
     ],
 

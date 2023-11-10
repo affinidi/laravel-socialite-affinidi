@@ -52,15 +52,15 @@ Open the directory `example` in VS code or your favorite editor
  
  4. Update below environment variables in `.env` based on the auth credentials received from the Login Configuration created earlier:
     ```
-    AFFINIDI_CLIENT_ID="<AUTH.CLIENT_ID>"
-    AFFINIDI_CLIENT_SECRET="<AUTH.CLIENT_SECRET>"
-    AFFINIDI_ISSUER="<AUTH.CLIENT_ISSUER>"
+    PROVIDER_CLIENT_ID="<AUTH.CLIENT_ID>"
+    PROVIDER_CLIENT_SECRET="<AUTH.CLIENT_SECRET>"
+    PROVIDER_ISSUER="<AUTH.CLIENT_ISSUER>"
     ```
     Sample values looks like below
     ```
-    AFFINIDI_CLIENT_ID="xxxxx-xxxxx-xxxxx-xxxxx-xxxxx"
-    AFFINIDI_CLIENT_SECRET="xxxxxxxxxxxxxxx"
-    AFFINIDI_ISSUER="https://yyyy-yyy-yyy-yyyy.apse1.login.affinidi.io"
+    PROVIDER_CLIENT_ID="xxxxx-xxxxx-xxxxx-xxxxx-xxxxx"
+    PROVIDER_CLIENT_SECRET="xxxxxxxxxxxxxxx"
+    PROVIDER_ISSUER="https://yyyy-yyy-yyy-yyyy.apse1.login.affinidi.io"
     ```
 5. Run the application
     ```
