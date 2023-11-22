@@ -48,18 +48,11 @@ class AffinidiProvider extends AbstractProvider implements ProviderInterface
         return $this->getIssuerUrl() . '/oauth2/token';
     }
 
-    private function extractProps($data, $names)
+    private function extractProps($data)
     {
         $values = [];
-        if (!is_array($names)) {
-            $names = [$names];
-        }
-        foreach ($data as $customData) {
-            foreach ($names as $name) {
-                if (isset($customData[$name])) {
-                    $values[$name] = $customData[$name];
-                }
-            }
+        foreach ($data as $key => $value) {
+            $values[key($value)] = current($value);
         }
         return $values;
     }
@@ -72,19 +65,7 @@ class AffinidiProvider extends AbstractProvider implements ProviderInterface
         // get the user details from ID token
         $info = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $token)[1]))), true);
         $custom = $info['custom'];
-        $values = $this->extractProps($custom, [
-            'email',
-            'name',
-            'givenName',
-            'familyName',
-            'middleName',
-            'nickname',
-            'picture',
-            'gender',
-            'birthdate',
-            'phoneNumber',
-            'address'
-        ]);
+        $values = $this->extractProps($custom);
         unset($info['custom']);
         $user = array_merge($info, $values);
 
