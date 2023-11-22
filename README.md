@@ -240,3 +240,5 @@ PROVIDER_ISSUER="<AUTH.CLIENT_ISSUER>"
 2. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
     **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
 3. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
+
+
