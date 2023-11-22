@@ -6,7 +6,8 @@
     "laravel",
     "oauth",
     "provider",
-    "socialite"
+    "socialite",
+    "affinidi login"
   ],
   "homepage": "https://affinidi.com",
   "support": {
