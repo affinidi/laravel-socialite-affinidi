@@ -10,7 +10,7 @@ A paradigm shift in the registration and sign-in process, Affinidi Login is a ga
 
 ## Introduction
 
-This package extends Socialite to enable passwordless authentication with the Affinidi OAuth2 provider.
+This package extends Socialite to enable passwordless authentication with the Affinidi OIDC provider.
 
 Learn more about Laravel Socialite [here](https://laravel.com/docs/10.x/socialite)
 
@@ -117,7 +117,7 @@ Open the directory `playground/example` in VS code or your favorite editor
     ```
 6. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
     **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
-7. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
+7. Click on `Affinidi Login` button to initiate OIDC login flow with Affinidi Vault
 
 <br/>
 <br/>
@@ -168,7 +168,7 @@ public function boot(): void
     \Affinidi\SocialiteProvider\AffinidiSocialite::extend($socialite);
 }
 ```
-3. Add credentials for the OAuth2 affinidi provider, should be placed in your application's `config/services.php` configuration file,
+3. Add credentials for the Affinidi OIDC provider, should be placed in your application's `config/services.php` configuration file,
 ```
 'affinidi' => [
     'base_uri' => env('PROVIDER_ISSUER'),
@@ -194,7 +194,7 @@ public function boot(): void
     ```
 2. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
     **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
-3. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
+3. Click on `Affinidi Login` button to initiate OIDC login flow with Affinidi Vault
 
 <br/>
 <br/>
@@ -220,7 +220,7 @@ public function boot(): void
     \Affinidi\SocialiteProvider\AffinidiSocialite::extend($socialite);
 }
 ```
-3. Add credentials for the OAuth2 affinidi provider, should be placed in your application's `config/services.php` configuration file,
+3. Add credentials for the Affinidi OIDC provider, should be placed in your application's `config/services.php` configuration file,
 ```
 'affinidi' => [
     'base_uri' => env('PROVIDER_ISSUER'),
@@ -249,6 +249,6 @@ PROVIDER_ISSUER="<AUTH.CLIENT_ISSUER>"
     ```
 2. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
     **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
-3. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
+3. Click on `Affinidi Login` button to initiate OIDC login flow with Affinidi Vault
 
 

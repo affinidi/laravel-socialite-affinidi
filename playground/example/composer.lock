@@ -40,7 +40,7 @@
                     "email": "paramesh.k@affinidi.com"
                 }
             ],
-            "description": "Affinidi (affinidi.com) OAuth2 Provider for Laravel Socialite.",
+            "description": "Affinidi (affinidi.com) OIDC Provider for Laravel Socialite.",
             "homepage": "https://affinidi.com",
             "keywords": [
                 "affinidi",
@@ -48,7 +48,9 @@
                 "laravel",
                 "oauth",
                 "provider",
-                "socialite"
+                "socialite",
+                "OIDC",
+                "OID4VP"
             ],
             "support": {
                 "issues": "https://github.com/affinidi/laravel-socialite-affinidi/issues",

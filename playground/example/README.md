@@ -78,4 +78,4 @@ Open this directory in VS code or your favorite editor
     ```
 7. Open the [http://localhost:8010/](http://localhost:8010/), which displays login page 
     **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8010/` instead of `http://localhost:8010/`. 
-8. Click on `Affinidi Login` button to initiate OAuth2 login flow with Affinidi Vault
+8. Click on `Affinidi Login` button to initiate OIDC login flow with Affinidi Vault

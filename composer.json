@@ -1,13 +1,15 @@
 {
   "name": "affinidi/laravel-socialite-affinidi",
-  "description": "Affinidi (affinidi.com) OAuth2 Provider for Laravel Socialite.",
+  "description": "Affinidi (affinidi.com) OIDC Provider for Laravel Socialite.",
   "keywords": [
     "affinidi",
     "laravel",
     "oauth",
     "provider",
     "socialite",
-    "affinidi login"
+    "affinidi login",
+    "OIDC",
+    "OID4VP"
   ],
   "homepage": "https://affinidi.com",
   "support": {
