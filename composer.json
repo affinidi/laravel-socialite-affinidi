@@ -13,8 +13,8 @@
   ],
   "homepage": "https://affinidi.com",
   "support": {
-      "issues": "https://github.com/affinidi/laravel-socialite-affinidi/issues",
-      "source": "https://github.com/affinidi/laravel-socialite-affinidi"
+    "issues": "https://github.com/affinidi/laravel-socialite-affinidi/issues",
+    "source": "https://github.com/affinidi/laravel-socialite-affinidi"
   },
   "require": {
     "php": "^8.0",
@@ -32,5 +32,14 @@
       "email": "paramesh.k@affinidi.com"
     }
   ],
-  "minimum-stability": "dev"
+  "minimum-stability": "stable",
+  "scripts": {
+    "build": [
+      "@composer --no-plugins --no-interaction install --no-scripts --no-dev",
+      "@composer --no-plugins --no-interaction archive"
+    ]
+  },
+  "scripts-descriptions": {
+    "build": "Build project artifact."
+  }
 }
