@@ -1,5 +1,5 @@
 # Create a tag when a PR is merged into the main branch
-name: Tag and update veresion
+name: Tag and update version
 on:
   pull_request:
     types:
