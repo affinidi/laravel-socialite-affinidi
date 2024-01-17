@@ -27,15 +27,12 @@ jobs:
           WITH_V: true
           PRERELEASE: false
           RELEASE_BRANCHES: main
-  
-  release:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Create a Release
-      uses: elgohr/Github-Release-Action@v5
-      env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        GH_TOKEN: ${{ github.token }}
-      with:
-        title: ${{ needs.create_tag.outputs.tag }}
+      
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        with:
+          title: ${{ steps.create_tag.outputs.new_tag }}
+    
