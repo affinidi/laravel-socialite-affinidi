@@ -31,12 +31,3 @@ jobs:
 
     - name: Install dependencies and build tar
       run: composer build
-    
-    - name: Publish a composer package
-      uses: better-php-actions/publish-composer-package@v1
-      with:
-        package_slug: "laravel-socialite-affinidi"
-        package_name: "laravel-socialite-affinidi"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
