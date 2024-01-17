@@ -38,4 +38,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         GH_TOKEN: ${{ github.token }}
       with:
-        title: ${{ needs.create_tag.outputs.new_tag }}
+        title: ${{ needs.create_tag.outputs.tag }}
