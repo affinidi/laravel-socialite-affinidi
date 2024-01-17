@@ -29,7 +29,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Install dependencies nad build tar
+    - name: Install dependencies and build tar
       run: composer build
     
     - name: Publish a composer package
@@ -37,4 +37,6 @@ jobs:
       with:
         package_slug: "laravel-socialite-affinidi"
         package_name: "laravel-socialite-affinidi"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
