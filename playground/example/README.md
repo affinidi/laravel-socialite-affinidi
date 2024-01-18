@@ -41,7 +41,7 @@ Open this directory in VS code or your favorite editor
     ```
     cp .env.example .env
     ```
- 4. Create [Affinidi Login Configuration](https://docs.affinidi.com/docs/affinidi-login/login-configuration/#create-login-configuration) by giving name as `Laravel App` and `Redirect URIs` as `http://localhost:8010/login/affinidi/callback`. Sample response is given below
+ 4. Create [Affinidi Login Configuration](https://docs.affinidi.com/docs/affinidi-login/login-configuration/#create-login-configuration) by giving name as `Laravel App` and `Redirect URIs` as `http://localhost:8000/login/affinidi/callback`. Sample response is given below
     ```
     {
         ...
@@ -76,6 +76,6 @@ Open this directory in VS code or your favorite editor
     ```
     php artisan serve
     ```
-7. Open the [http://localhost:8010/](http://localhost:8010/), which displays login page 
-    **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8010/` instead of `http://localhost:8010/`. 
+7. Open the [http://localhost:8000/](http://localhost:8000/), which displays login page 
+    **Important**: You might error on redirect URL mismatch if you are using `http://127.0.0.1:8000/` instead of `http://localhost:8000/`. 
 8. Click on `Affinidi Login` button to initiate OIDC login flow with Affinidi Vault

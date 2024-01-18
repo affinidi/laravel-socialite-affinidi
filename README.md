@@ -147,7 +147,7 @@ php artisan serve
 ```
 3. Once you have started the Artisan development server, your application will be accessible in your web browser at [http://localhost:8000](http://localhost:8000)
 
-**Note**: If you enounter an error on generating Key, then execute the below command which updates `APP_KEY` in your .env file and then run the app
+**Note**: If you encounter an error on generating Key, then execute the below command which updates `APP_KEY` in your .env file and then run the app
 ```
 php artisan key:generate
 ```
@@ -159,7 +159,7 @@ To get started with Socialite, use the Composer package manager to add the packa
 ```
 composer require affinidi/laravel-socialite-affinidi
 ```
-2. Open `AppServiceProvider.php` file under `app\Providers`, and bootrap the affinidi driver to socialite class inside function `boot()`, the code should look like below 
+2. Open `AppServiceProvider.php` file under `app\Providers`, and bootstrap the Affinidi driver to socialite class inside function `boot()`, the code should look like below 
 ```
 public function boot(): void
 {
