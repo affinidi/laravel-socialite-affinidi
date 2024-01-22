@@ -29,10 +29,8 @@ jobs:
           RELEASE_BRANCHES: main
       
       - name: Create a Release
-        uses: elgohr/Github-Release-Action@v5
+        run: gh release create -t "${{ steps.create_tag.outputs.new_tag }}" "${{ steps.create_tag.outputs.new_tag }}" --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
           GH_TOKEN: ${{ github.token }}
-        with:
-          title: ${{ steps.create_tag.outputs.new_tag }}
     
