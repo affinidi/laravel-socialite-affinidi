@@ -121,7 +121,7 @@ Open the directory `playground/example` in VS code or your favorite editor
 
 <br/>
 <br/>
-<br/>
+
 
 ## Integration Affinidi Login - Fresh Laravel Project
 
